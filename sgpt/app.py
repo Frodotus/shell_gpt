@@ -125,7 +125,7 @@ def main(
         joined_prompt = f"{sys.stdin.read()}\n\n{joined_prompt or ''}"
 
     if not joined_prompt and not editor and not repl:
-        raise MissingParameter(param_hint="PROMPT", param_type="string")
+        joined_prompt = typer.prompt("sgpt", prompt_suffix="%")
 
     if sum([shell, describe_shell, code]) > 1:
         raise BadArgumentUsage(
